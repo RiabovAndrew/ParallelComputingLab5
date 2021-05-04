@@ -48,7 +48,11 @@ int main(int argc, char* argv[])
 	MPI_Bcast(arr, arr_size, MPI_INT, 0, MPI_COMM_WORLD);
 
 	int a = arr[rank];
-	MPI_Reduce(&a, &r, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
+	
+	//MPI_Reduce(&a, &r, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
+	MPI_Reduce(&a, &r, 1, MPI_INT, MPI_MAX, 0, MPI_COMM_WORLD);
+	//MPI_Reduce(&a, &r, 1, MPI_INT, MPI_MIN, 0, MPI_COMM_WORLD);
+	//MPI_Reduce(&a, &r, 1, MPI_INT, MPI_PROD, 0, MPI_COMM_WORLD);
 
 	MPI_Gather(&a, 1, MPI_INT, arr_result, 1, MPI_INT, 0, MPI_COMM_WORLD);
 
